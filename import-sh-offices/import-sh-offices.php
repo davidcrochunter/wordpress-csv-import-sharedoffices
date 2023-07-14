@@ -1,9 +1,17 @@
 <?php
-   /*
-   Plugin Name: Import Shared Offices
-   Author: Mr. Awesome
-   License: GPL2
-   */
+/*
+  Plugin Name: Import Shared Offices
+  Author: D.C. Hunter
+  License: GPL2
+*/
+function import_sh_offices_enqueue_style() {
+  wp_enqueue_style( 'import-sh-offices-style', plugins_url( 'css/import-sh-offices-style.css', __FILE__ ) );
+  wp_enqueue_script( 'import-sh-offices-script', plugins_url( 'js/import-sh-offices-script.js', __FILE__ ) );
+
+}
+add_action( 'admin_enqueue_scripts', 'import_sh_offices_enqueue_style' );
+
+
 ?>
 
 <?php
@@ -35,7 +43,7 @@ function import_shared_offices_options_page_html() {
 function wporg_options_page() {
     add_menu_page(
         'Import Shared Offices',
-        'Import Shared Offices Options',
+        'Import Sh-Offices',
         'manage_options',
 
         // 'import-shared-offices-options',
@@ -44,7 +52,8 @@ function wporg_options_page() {
 
         plugin_dir_path(__FILE__) . 'admin/view.php',
         null,
-        plugin_dir_url(__FILE__) . 'images/icon_wporg.png',
+        // plugin_dir_url(__FILE__) . 'images/icon_wporg.png',
+        'dashicons-database-import',
 
         20
     );
